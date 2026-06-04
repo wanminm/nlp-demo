@@ -149,7 +149,7 @@ if page == "📊 舆情数据看板":
             st.plotly_chart(pie_fig, use_container_width=True)
 
     with st.expander("📋 查看原始数据"):
-        st.dataframe(df, use_container_width=True)
+        st.dataframe(df)
 
 # ============================================================
 #  页面二：单句交互分析
