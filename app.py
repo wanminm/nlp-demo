@@ -90,12 +90,15 @@ if uploaded_file is not None:
         tmp_path = tmp.name
     df = load_file(tmp_path)
     os.unlink(tmp_path)
+    st.session_state["df"] = df
+    st.session_state.pop("sentiment_scores", None)  # 新文件需重新计算
     st.sidebar.success(f"✅ 已加载 {len(df)} 条评论")
 else:
-    df = load_sample_data()
+    # 首次加载或使用已有的 session state 数据（保留情感列）
+    if "df" not in st.session_state:
+        st.session_state["df"] = load_sample_data()
+    df = st.session_state["df"]
     st.sidebar.info(f"📋 当前使用内置演示数据 ({len(df)} 条)")
-
-st.session_state["df"] = df
 
 # ---- 页面导航 ----
 st.sidebar.markdown("---")
