@@ -121,7 +121,12 @@ if page == "📊 舆情数据看板":
                 categories.append(cats[0] if cats else "其他")
             df["sentiment_score"] = sentiments
             df["business_category"] = categories
+            # 保存回 session_state 避免切换页面后丢失
+            st.session_state["df"] = df
             st.session_state["sentiment_scores"] = True
+    else:
+        # 从 session_state 取回已含情感列的数据
+        df = st.session_state["df"]
 
     # 宏观指标卡
     stats = get_summary_stats(df)
