@@ -164,7 +164,7 @@ if page == "🔍 单句交互分析":
         height=100,
     )
 
-    if st.button("🚀 智能分析", type="primary", key="analyze_btn"):
+    if st.button("🚀 智能分析", key="analyze_btn"):
         if not user_input.strip():
             st.warning("请输入评论内容后再点击分析")
         else:
@@ -274,7 +274,7 @@ if page == "🧠 批量聚类语义地图":
 
     texts = df["评论内容"].tolist()
 
-    if st.button("🚀 开始聚类分析", type="primary", key="cluster_btn"):
+    if st.button("🚀 开始聚类分析", key="cluster_btn"):
         if len(texts) < k_value:
             st.error(f"评论文本数量 ({len(texts)}) 不能少于 K 值 ({k_value})")
         else:
